@@ -1,4 +1,4 @@
-# 🎮 Aviator Betting Bot
+# Aviator Betting Bot
 
 ## ⚠️ Disclaimer
 
@@ -28,22 +28,22 @@ An intelligent automation tool for the Aviator game, leveraging Node.js, Puppete
 ## ✨ Features
 
 ### Core Features
-- 🤖 Fully automated betting with customizable strategies
-- 📊 Real-time game monitoring and analysis
-- 💰 Smart bankroll management
-- 📈 Comprehensive statistics tracking
-- 🔄 Martingale and custom betting progressions
-- ⚡ Fast and reliable browser automation
-- 📝 Detailed logging and error handling
+- Fully automated betting with customizable strategies
+- Real-time game monitoring and analysis
+- Smart bankroll management
+- Comprehensive statistics tracking
+- Martingale and custom betting progressions
+- Fast and reliable browser automation
+- Detailed logging and error handling
 
 ### Advanced Features
-- 🎯 Multiple pre-configured betting strategies
-- 🛑 Automatic stop-loss and take-profit
-- 📱 Optional web interface for monitoring
-- 🗄️ Database integration for bet history
-- 📊 Statistical analysis tools
+- Multiple pre-configured betting strategies
+- Automatic stop-loss and take-profit
+- Optional web interface for monitoring
+- Database integration for bet history
+- Statistical analysis tools
 
-## 💻 Requirements
+## Requirements
 
 - Node.js (version >= 14.0.0)
 - npm (comes with Node.js)
@@ -51,7 +51,7 @@ An intelligent automation tool for the Aviator game, leveraging Node.js, Puppete
 - Modern web browser
 - Stable internet connection
 
-## 🚀 Installation
+## Installation
 
 1. Clone the repository:
 ```bash
@@ -193,7 +193,7 @@ aviator-bot/
     └── script.js
 ```
 
-## 📊 Strategies
+## Strategies
 
 ### 1. Conservative Strategy
 - Initial bet: $1.00
@@ -245,7 +245,7 @@ The bot operates in a series of steps as outlined below:
 > **Note**: The monitoring and betting process will continue indefinitely. To stop the bot, you will need to manually interrupt the script execution using `CTRL + C` in your terminal.
 
 
-## 🔄 Future Enhancements
+## Future Enhancements
 
 1. **Machine Learning Integration**
    - Pattern recognition
