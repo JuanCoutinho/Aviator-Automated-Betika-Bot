@@ -10,20 +10,6 @@ Please note: This project is open source and intended for community collaboratio
 
 An intelligent automation tool for the Aviator game, leveraging Node.js, Puppeteer, and advanced betting strategies. This bot automates the betting process while implementing smart risk management and real-time analytics.
 
-## 🚀 Quick Start
-
-```bash
-# Clone the repository
-git clone https://github.com/Raccoon254/Aviator-Automated-Betika-Bot.git aviator-bot
-cd aviator-bot
-
-# Install dependencies
-npm install
-
-# Run the bot
-npm run start
-```
-
 ## Table of Contents
 
 - [Features](#features)
@@ -189,60 +175,6 @@ The bot implements a sophisticated betting system:
 - Manages bet sizing
 - Monitors total exposure
 
-## Architecture
-
-```plaintext
-aviator-bot/
-│
-├── database/               # Database integration
-│   └── database.js        # MySQL connection and queries
-│
-├── game/                  # Core game logic
-│   ├── betManager.js     # Bet execution
-│   ├── gameMonitor.js    # Game state tracking
-│   ├── statsTracker.js   # Statistics
-│   └── strategies.js     # Betting strategies
-│
-├── util/                 # Utilities
-│   ├── config.js        # Configuration
-│   ├── frameHelper.js   # Frame navigation
-│   └── logger.js        # Logging system
-│
-└── public/              # Web interface
-    ├── index.html
-    └── script.js
-```
-
-## Strategies
-
-### 1. Conservative Strategy
-- Initial bet: $1.00
-- Target multiplier: 1.20x
-- Stop loss: $20.00
-- Best for: Steady, low-risk play
-
-### 2. Moderate Strategy
-- Initial bet: $2.00
-- Target multiplier: 1.50x
-- Stop loss: $50.00
-- Best for: Balanced risk/reward
-
-### 3. Aggressive Strategy
-- Initial bet: $5.00
-- Target multiplier: 2.00x
-- Stop loss: $100.00
-- Best for: High risk, high reward
-
-### Custom Strategy Setup:
-```javascript
-const customStrategy = {
-    initialBet: 3.00,
-    maxBet: 75.00,
-    targetMultiplier: 1.35,
-    stopLoss: 30.00
-};
-```
-
 ## Deprecated Support for Major Betting Sites Like Betika
 
 **Note**: The following features have been temporarily removed from the current version:
@@ -302,13 +234,9 @@ A: Check the `logs/error.log` file for detailed error information. Most common i
 This software is provided for **educational and research purposes only**. By using this bot, you acknowledge and agree to the following:
 
 - **Financial Risk**: Gambling involves substantial financial risk. Never bet money you cannot afford to lose.
-- **No Guarantees**: This bot does not guarantee profits. Past performance does not indicate future results.
-- **Legal Compliance**: Users are solely responsible for ensuring their use of this software complies with local laws and regulations.
 - **Terms of Service**: Using automated bots may violate the terms of service of betting platforms. Use at your own risk.
 - **No Liability**: The developers and contributors are not responsible for any financial losses, legal issues, or other damages resulting from the use of this software.
 - **Age Restriction**: You must be of legal gambling age in your jurisdiction to use this software.
-
-**USE THIS SOFTWARE AT YOUR OWN RISK.**
 
 ## License
 
