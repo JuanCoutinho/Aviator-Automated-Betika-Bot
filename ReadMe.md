@@ -1,8 +1,8 @@
 # Aviator Betting Bot
 
-## ⚠️ Disclaimer
+## ⚠️ Important Notice
 
-Please dont message me requesting me to create a bot for free or requesting me to help you configure the bot, Im am normally very busy and I made this opensource for you guys to help me develop it, not me to help you!!
+Please note: This project is open source and intended for community collaboration. I'm unable to provide free bot creation services or individual configuration support due to time constraints. This repository is meant for developers to contribute and learn together.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D%2014.0.0-brightgreen.svg)](https://nodejs.org/)
@@ -10,20 +10,36 @@ Please dont message me requesting me to create a bot for free or requesting me t
 
 An intelligent automation tool for the Aviator game, leveraging Node.js, Puppeteer, and advanced betting strategies. This bot automates the betting process while implementing smart risk management and real-time analytics.
 
+## 🚀 Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/Raccoon254/Aviator-Automated-Betika-Bot.git aviator-bot
+cd aviator-bot
+
+# Install dependencies
+npm install
+
+# Run the bot
+npm run start
+```
+
 ## Table of Contents
 
-- [Features](#-features)
-- [Requirements](#-requirements)
-- [Installation](#-installation)
-- [Configuration](#-configuration)
-- [Usage](#-usage)
-- [How It Works](#-how-it-works)
-- [Architecture](#-architecture)
-- [Strategies](#-strategies)
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [How It Works](#how-it-works)
+- [Architecture](#architecture)
+- [Strategies](#strategies)
+- [Deprecated Features](#deprecated-support-for-major-betting-sites-like-betika)
+- [Future Enhancements](#future-enhancements)
+- [FAQ](#faq)
 - [Contributing](#-contributing)
-- [Future Enhancements](#-future-enhancements)
-- [FAQ](#-faq)
+- [Support This Project](#-support-this-project)
 - [Disclaimer](#-disclaimer)
+- [License](#license)
 
 ## Features
 
@@ -53,31 +69,35 @@ An intelligent automation tool for the Aviator game, leveraging Node.js, Puppete
 
 ## Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/Raccoon254/Aviator-Automated-Betika-Bot.git aviator-bot
-    cd aviator-bot
-```
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Raccoon254/Aviator-Automated-Betika-Bot.git aviator-bot
+   cd aviator-bot
+   ```
 
-2. Install dependencies:
-```bash
-npm install
-```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-   ## You can test the bot on the live site
+3. **Run the bot:**
+
+   You can test the bot on the live demo site:
    ```bash
    npm run start
    ```
-   Or
+
+   Or alternatively:
    ```bash
    node index.js
    ```
-   If you wish to make modification proceed to the next step
 
-3. Set up configuration:
-```md
-# Edit config.js with your preferred settings
-```
+4. **Configure (Optional):**
+
+   If you wish to make modifications, edit the configuration file:
+   ```bash
+   # Edit util/config.js with your preferred settings
+   ```
 
 ## Configuration
 
@@ -223,16 +243,18 @@ const customStrategy = {
 };
 ```
 
-## Deprecated Support for major betting sites like betika
-- I removed configuration to test on live sites
-- If you need the configuration for that you can message me, I will try to help
-- I will try to add support for major betting sites in the future
+## Deprecated Support for Major Betting Sites Like Betika
 
-- removed the database integration for now, I will try to add it in the future
-- removed the web interface for now, I will try to add it in the future
-- removed the statistical analysis tools and prediction for now, I will try to add it in the future
+**Note**: The following features have been temporarily removed from the current version:
 
-## How It Should Work Works
+- **Live betting site integration** - Configuration for major betting sites (Betika, etc.) has been removed
+- **Database integration** - MySQL database features are currently disabled
+- **Web interface** - The monitoring dashboard is temporarily unavailable
+- **Statistical analysis tools** - Predictive analytics features are under development
+
+These features are planned for re-implementation in future releases. If you need access to legacy configurations, please open an issue on GitHub.
+
+## How It Works
 The bot operates in a series of steps as outlined below:
 
 1. **Authentication**: Logs into the betting site using provided credentials.
@@ -273,9 +295,20 @@ A: No. This is a tool for automation and should be used responsibly with proper 
 **Q: How do I handle errors?**
 A: Check the `logs/error.log` file for detailed error information. Most common issues are related to network connectivity or selector changes.
 
-## ⚠️ Disclaimer
+## ⚠️ Legal Disclaimer
 
-This bot is for educational purposes only. Gambling involves risk and you should never bet more than you can afford to lose. The developers are not responsible for any financial losses incurred through the use of this software.
+**IMPORTANT - PLEASE READ CAREFULLY:**
+
+This software is provided for **educational and research purposes only**. By using this bot, you acknowledge and agree to the following:
+
+- **Financial Risk**: Gambling involves substantial financial risk. Never bet money you cannot afford to lose.
+- **No Guarantees**: This bot does not guarantee profits. Past performance does not indicate future results.
+- **Legal Compliance**: Users are solely responsible for ensuring their use of this software complies with local laws and regulations.
+- **Terms of Service**: Using automated bots may violate the terms of service of betting platforms. Use at your own risk.
+- **No Liability**: The developers and contributors are not responsible for any financial losses, legal issues, or other damages resulting from the use of this software.
+- **Age Restriction**: You must be of legal gambling age in your jurisdiction to use this software.
+
+**USE THIS SOFTWARE AT YOUR OWN RISK.**
 
 ## License
 
@@ -284,6 +317,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🤝 Contributing
 
 Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+## 💝 Support This Project
+
+If you find this project helpful and would like to support its development, consider making a donation:
+
+**[Donate via KenTom](https://www.kentom.co.ke/donate)**
+
+Your support helps maintain and improve this project. Every contribution, no matter the size, is greatly appreciated!
 
 ---
 Made with ❤️ by [Raccoon254](https://www.kentom.co.ke/)
