@@ -10,20 +10,6 @@ Please note: This project is open source and intended for community collaboratio
 
 An intelligent automation tool for the Aviator game, leveraging Node.js, Puppeteer, and advanced betting strategies. This bot automates the betting process while implementing smart risk management and real-time analytics.
 
-## 🚀 Quick Start
-
-```bash
-# Clone the repository
-git clone https://github.com/Raccoon254/Aviator-Automated-Betika-Bot.git aviator-bot
-cd aviator-bot
-
-# Install dependencies
-npm install
-
-# Run the bot
-npm run start
-```
-
 ## Table of Contents
 
 - [Features](#features)
@@ -160,22 +146,34 @@ The bot implements a sophisticated betting system:
    - Detects game start/end
    - Tracks betting opportunities
 
+2. **Bet Placement**:
+   ```javascript
+   async placeBet(frame) {
+       // Set bet amount
+       await setBetAmount(frame);
+       
+       // Click bet button
+       await clickBetButton(frame);
+       
+       // Monitor result
+       await monitorBetResult(frame);
+   }
+   ```
+
+3. **Cashout Management**:
+   ```javascript
+   async checkCashout(frame) {
+       if (currentMultiplier >= targetMultiplier) {
+           await executeCashout(frame);
+       }
+   }
+   ```
+
 ### 3. Risk Management
 - Implements stop-loss
 - Tracks consecutive losses
 - Manages bet sizing
 - Monitors total exposure
-
-## Deprecated Support for Major Betting Sites Like Betika
-
-**Note**: The following features have been temporarily removed from the current version:
-
-- **Live betting site integration** - Configuration for major betting sites (Betika, etc.) has been removed
-- **Database integration** - MySQL database features are currently disabled
-- **Web interface** - The monitoring dashboard is temporarily unavailable
-- **Statistical analysis tools** - Predictive analytics features are under development
-
-These features are planned for re-implementation in future releases. If you need access to legacy configurations, please open an issue on GitHub.
 
 ## Deprecated Support for Major Betting Sites Like Betika
 
