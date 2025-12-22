@@ -10,7 +10,7 @@ Please dont message me requesting me to create a bot for free or requesting me t
 
 An intelligent automation tool for the Aviator game, leveraging Node.js, Puppeteer, and advanced betting strategies. This bot automates the betting process while implementing smart risk management and real-time analytics.
 
-## 📑 Table of Contents
+## Table of Contents
 
 - [Features](#-features)
 - [Requirements](#-requirements)
@@ -25,7 +25,7 @@ An intelligent automation tool for the Aviator game, leveraging Node.js, Puppete
 - [FAQ](#-faq)
 - [Disclaimer](#-disclaimer)
 
-## ✨ Features
+## Features
 
 ### Core Features
 - Fully automated betting with customizable strategies
@@ -79,7 +79,7 @@ npm install
 # Edit config.js with your preferred settings
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 ### Base Configuration
 ```javascript
@@ -111,7 +111,7 @@ BETTING_STRATEGIES: {
 }
 ```
 
-## 🎮 How It Works
+## How It Works
 
 ### 1. Game State Monitoring
 ```javascript
@@ -169,7 +169,7 @@ The bot implements a sophisticated betting system:
 - Manages bet sizing
 - Monitors total exposure
 
-## 🏗️ Architecture
+## Architecture
 
 ```plaintext
 aviator-bot/
@@ -262,7 +262,7 @@ The bot operates in a series of steps as outlined below:
    - API integration
    - Mobile notifications
 
-## ❓ FAQ
+## FAQ
 
 **Q: How do I customize betting strategies?**
 A: Edit the strategy configurations in `util/config.js` or use the interactive prompt when starting the bot.
@@ -277,7 +277,7 @@ A: Check the `logs/error.log` file for detailed error information. Most common i
 
 This bot is for educational purposes only. Gambling involves risk and you should never bet more than you can afford to lose. The developers are not responsible for any financial losses incurred through the use of this software.
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
