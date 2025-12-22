@@ -160,88 +160,22 @@ The bot implements a sophisticated betting system:
    - Detects game start/end
    - Tracks betting opportunities
 
-2. **Bet Placement**:
-   ```javascript
-   async placeBet(frame) {
-       // Set bet amount
-       await setBetAmount(frame);
-       
-       // Click bet button
-       await clickBetButton(frame);
-       
-       // Monitor result
-       await monitorBetResult(frame);
-   }
-   ```
-
-3. **Cashout Management**:
-   ```javascript
-   async checkCashout(frame) {
-       if (currentMultiplier >= targetMultiplier) {
-           await executeCashout(frame);
-       }
-   }
-   ```
-
 ### 3. Risk Management
 - Implements stop-loss
 - Tracks consecutive losses
 - Manages bet sizing
 - Monitors total exposure
 
-## Architecture
+## Deprecated Support for Major Betting Sites Like Betika
 
-```plaintext
-aviator-bot/
-│
-├── database/               # Database integration
-│   └── database.js        # MySQL connection and queries
-│
-├── game/                  # Core game logic
-│   ├── betManager.js     # Bet execution
-│   ├── gameMonitor.js    # Game state tracking
-│   ├── statsTracker.js   # Statistics
-│   └── strategies.js     # Betting strategies
-│
-├── util/                 # Utilities
-│   ├── config.js        # Configuration
-│   ├── frameHelper.js   # Frame navigation
-│   └── logger.js        # Logging system
-│
-└── public/              # Web interface
-    ├── index.html
-    └── script.js
-```
+**Note**: The following features have been temporarily removed from the current version:
 
-## Strategies
+- **Live betting site integration** - Configuration for major betting sites (Betika, etc.) has been removed
+- **Database integration** - MySQL database features are currently disabled
+- **Web interface** - The monitoring dashboard is temporarily unavailable
+- **Statistical analysis tools** - Predictive analytics features are under development
 
-### 1. Conservative Strategy
-- Initial bet: $1.00
-- Target multiplier: 1.20x
-- Stop loss: $20.00
-- Best for: Steady, low-risk play
-
-### 2. Moderate Strategy
-- Initial bet: $2.00
-- Target multiplier: 1.50x
-- Stop loss: $50.00
-- Best for: Balanced risk/reward
-
-### 3. Aggressive Strategy
-- Initial bet: $5.00
-- Target multiplier: 2.00x
-- Stop loss: $100.00
-- Best for: High risk, high reward
-
-### Custom Strategy Setup:
-```javascript
-const customStrategy = {
-    initialBet: 3.00,
-    maxBet: 75.00,
-    targetMultiplier: 1.35,
-    stopLoss: 30.00
-};
-```
+These features are planned for re-implementation in future releases. If you need access to legacy configurations, please open an issue on GitHub.
 
 ## Deprecated Support for Major Betting Sites Like Betika
 
@@ -302,13 +236,9 @@ A: Check the `logs/error.log` file for detailed error information. Most common i
 This software is provided for **educational and research purposes only**. By using this bot, you acknowledge and agree to the following:
 
 - **Financial Risk**: Gambling involves substantial financial risk. Never bet money you cannot afford to lose.
-- **No Guarantees**: This bot does not guarantee profits. Past performance does not indicate future results.
-- **Legal Compliance**: Users are solely responsible for ensuring their use of this software complies with local laws and regulations.
 - **Terms of Service**: Using automated bots may violate the terms of service of betting platforms. Use at your own risk.
 - **No Liability**: The developers and contributors are not responsible for any financial losses, legal issues, or other damages resulting from the use of this software.
 - **Age Restriction**: You must be of legal gambling age in your jurisdiction to use this software.
-
-**USE THIS SOFTWARE AT YOUR OWN RISK.**
 
 ## License
 
