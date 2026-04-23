@@ -24,7 +24,7 @@ const T_ENTRY   = 28000;  // 18–28s: sinal confirmado
 const T_RUNNING = 70000;  // 28–70s: rodando
 // restante até 85s: resultado
 
-export default function handler(req, res) {
+module.exports = function handler(req, res) {
   const now      = Date.now();
   const cycleNum = Math.floor(now / CYCLE_MS);
   const elapsed  = now % CYCLE_MS;
