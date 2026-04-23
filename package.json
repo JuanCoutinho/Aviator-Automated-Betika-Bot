@@ -17,6 +17,9 @@
   ],
   "author": "raccoon",
   "license": "ISC",
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
     "@tensorflow/tfjs": "^4.4.0",
     "arima": "^0.2.5",
