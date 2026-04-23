@@ -31,10 +31,11 @@
             --font-mono: 'Space Mono', monospace;
         }
 
-        html { height: 100%; }
+        html { min-height: 100%; }
         html, body {
-            height: 100%;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
         body {
             font-family: var(--font-body);
@@ -74,9 +75,9 @@
         /* ─── APP ─── */
         .app {
             position: relative; z-index: 1;
-            display: grid;
-            grid-template-rows: 50px 1fr;
-            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* ─── HEADER ─── */
@@ -161,9 +162,10 @@
         .body {
             display: grid;
             grid-template-columns: clamp(220px, 18vw, 260px) 1fr clamp(250px, 20vw, 285px);
-            overflow: hidden;
-            height: calc(100vh - 50px);
+            min-height: calc(100vh - 50px);
             flex: 1;
+            align-items: stretch;
+            overflow: visible;
         }
 
         /* ─── PAINEL GLASS LP ─── */
@@ -229,16 +231,16 @@
         /* ─── CENTRO ─── */
         .center {
             display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            padding: clamp(10px, 2vh, 20px); gap: clamp(10px, 2vh, 18px);
+            align-items: center; justify-content: flex-start;
+            padding: clamp(20px, 4vh, 40px) 20px; gap: clamp(10px, 2vh, 18px);
             position: relative;
-            overflow: hidden;
+            overflow: visible;
         }
 
         /* Avião voando */
         .plane-wrap {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            pointer-events: none; overflow: hidden;
+            pointer-events: none; overflow: visible;
         }
         .plane-bg {
             position: absolute;
