@@ -109,10 +109,11 @@ const globalStyles = `
   }
   .nav-logo-icon {
     display: flex; align-items: center; justify-content: center;
-    width: 36px; height: 36px;
+    width: 48px; height: 48px;
     background: linear-gradient(135deg, var(--gold-0), var(--gold-2));
-    color: #000; border-radius: 8px; font-size: 20px;
+    color: #000; border-radius: 10px; font-size: 24px;
     box-shadow: 0 4px 15px rgba(245, 197, 24, 0.4);
+    overflow: hidden;
   }
   .nav-btn {
     font-family: var(--font-display);
