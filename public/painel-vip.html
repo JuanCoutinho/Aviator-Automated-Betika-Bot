@@ -577,6 +577,7 @@
             </div>
             <a class="cta-small" href="https://7games.bet.br" target="_blank">🎰 APOSTAR AGORA</a>
             <a class="discord-btn" href="https://discord.gg/2evPNS7TwZ" target="_blank">💬 DISCORD</a>
+            <a class="discord-btn" href="/ebook.html" target="_blank" style="background:rgba(245,197,24,.12);border-color:rgba(245,197,24,.25);color:var(--gold);">📖 E-BOOK VIP</a>
         </div>
     </header>
 
@@ -744,12 +745,17 @@ async function pollSignal() {
         const rd  = d.totalRodadas || 0;
         const wr  = d.winRate || '—';
 
-        // Inicializa histórico 1 vez com dados da API
+        // Inicializa histórico 1 vez com dados da API (com horários reais estimados)
         if (!histInited && d.history?.length) {
             histInited = true;
-            d.history.slice().reverse().forEach(h => {
+            const CYCLE_MS = 85000;
+            d.history.slice().reverse().forEach((h, idx) => {
                 const res = !h.entered ? 'none' : h.green ? 'green' : 'red';
-                addHist(h.mult, res, true);
+                // estima o horário real: cada item é 1 ciclo mais velho
+                const offsetMs = (d.history.length - idx) * CYCLE_MS;
+                const ts = new Date(Date.now() - offsetMs);
+                const timeStr = ts.toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+                addHist(h.mult, res, timeStr);
             });
         }
 
@@ -839,12 +845,16 @@ function setSig(cardCls, badgeCls, badgeTxt, hl, hlColor, sig, html=false) {
     }
 }
 
-function addHist(m, res, silent=false) {
+// timeStr: string com horário, ou true/false para manter comportamento antigo
+function addHist(m, res, timeStr=false) {
     const feed=document.getElementById('HIST');
     const cls=m<1.5?'low':m<3?'mid':m<10?'high':'epic';
     const resMap={green:['g','✅ GREEN'],red:['r','❌ LOSS'],none:['n','➖']};
     const [rc,rt]=resMap[res]||['n','➖'];
-    const now=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    // se timeStr for string usa ela, senão pega horário atual
+    const now = (typeof timeStr === 'string')
+        ? timeStr
+        : new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
     const el=document.createElement('div'); el.className='hist-item';
     el.innerHTML=`<span class="hi-time">${now}</span><span class="hi-mult ${cls}">${m.toFixed(2)}x</span><span class="hi-res ${rc}">${rt}</span>`;
     feed.insertBefore(el,feed.firstChild);
