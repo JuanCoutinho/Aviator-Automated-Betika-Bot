@@ -16,7 +16,7 @@ const htmlContent = `<!DOCTYPE html>
   <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
-<body>
+<body style="background: black; color: white;">
   <div id="root"></div>
   <script type="text/babel">
 ${processedJsx}
@@ -28,4 +28,5 @@ ${processedJsx}
 </html>`;
 
 fs.writeFileSync('public/index.html', htmlContent);
-console.log('HTML gerado em public/index.html');
+fs.writeFileSync('index.html', htmlContent);
+console.log('HTML gerado em public/index.html e ./index.html');

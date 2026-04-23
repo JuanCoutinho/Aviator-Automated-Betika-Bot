@@ -2,7 +2,6 @@
   "name": "aviatorbot",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
   "scripts": {
     "build": "node generate_html.js",
     "start": "node index.js",

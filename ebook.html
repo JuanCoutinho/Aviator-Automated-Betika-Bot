@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Guia do Aviador — E-book VIP | Sheik Brasileiro Milionário</title>
+    <link rel="icon" href="/aviao3d.png">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --gold:   #F5C518;
+            --gold2:  #B8860B;
+            --gold0:  #FFFDE7;
+            --green:  #00E676;
+            --red:    #FF1744;
+            --bg:     #000000;
+            --bg2:    #0a0a0a;
+            --bg3:    #111111;
+            --border: rgba(255,255,255,0.08);
+            --dim:    #555;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            background: #1a1a1a;
+            font-family: 'Inter', sans-serif;
+            color: #E0E0E0;
+            -webkit-font-smoothing: antialiased;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        /* ── TOP BAR ── */
+        .top-bar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(0,0,0,.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(245,197,24,.2);
+            padding: 12px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 16px;
+        }
+        .top-bar-note { font-size: 12px; color: #888; }
+        .top-bar-note strong { color: var(--gold); }
+        .btn-pdf {
+            display: flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, var(--gold0), var(--gold));
+            color: #000; font-family: 'Outfit', sans-serif;
+            font-size: 13px; font-weight: 800;
+            padding: 10px 22px; border-radius: 10px;
+            border: none; cursor: pointer; text-decoration: none;
+            box-shadow: 0 4px 20px rgba(245,197,24,.35);
+            transition: filter .2s, transform .1s; white-space: nowrap;
+        }
+        .btn-pdf:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .spacer { height: 68px; }
+
+        /* ── E-BOOK PAGE ── */
+        .ebook-page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 24px auto;
+            background: var(--bg);
+            color: #E0E0E0;
+            padding: 18mm 20mm;
+            box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 0 1px rgba(245,197,24,.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Gold line top */
+        .ebook-page::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), var(--gold2), transparent);
+        }
+
+        /* Page number */
+        .pg-num {
+            position: absolute; bottom: 10mm; right: 14mm;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px; color: #333;
+            letter-spacing: 2px;
+        }
+
+        /* ── TYPO ── */
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
+        h1 { font-size: 64px; font-weight: 900; line-height: 1; color: #fff; }
+        h2 { font-size: 26px; font-weight: 800; color: var(--gold); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid rgba(245,197,24,.15); }
+        h3 { font-size: 16px; font-weight: 700; color: #fff; margin: 20px 0 8px; }
+        h4 { font-size: 13px; font-weight: 800; margin-bottom: 8px; }
+        p  { font-size: 13px; line-height: 1.75; color: #ccc; margin-bottom: 12px; }
+        strong { color: #fff; }
+        em { color: var(--gold); font-style: italic; }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 4px;
+        }
+        .quote {
+            border-left: 3px solid var(--gold);
+            padding: 12px 18px;
+            background: rgba(245,197,24,.04);
+            border-radius: 0 8px 8px 0;
+            font-size: 13px; font-style: italic; color: #aaa;
+            margin: 16px 0;
+        }
+        .quote strong { color: var(--gold); }
+
+        /* ── TABLES ── */
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        th {
+            background: rgba(245,197,24,.08);
+            color: var(--gold);
+            font-family: 'Space Mono', monospace;
+            font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+            padding: 10px 12px; border: 1px solid rgba(245,197,24,.1); text-align: left;
+        }
+        td {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px; color: #ccc;
+            padding: 9px 12px; border: 1px solid rgba(255,255,255,.05);
+        }
+        tr:nth-child(even) td { background: rgba(255,255,255,.02); }
+        td.r { color: #FF6B7A; }
+        td.g { color: var(--green); }
+
+        /* ── CARDS ── */
+        .card {
+            border-radius: 12px; padding: 14px 16px; margin-bottom: 10px;
+            font-size: 12px; line-height: 1.6;
+        }
+        .card-red    { background: rgba(255,23,68,.05);   border-left: 3px solid #FF1744; }
+        .card-yellow { background: rgba(245,197,24,.05);  border-left: 3px solid var(--gold); }
+        .card-green  { background: rgba(0,230,118,.05);   border-left: 3px solid var(--green); }
+        .card-blue   { background: rgba(0,176,255,.05);   border-left: 3px solid #00B0FF; }
+        .card h4.r   { color: #FF6B7A; }
+        .card h4.y   { color: var(--gold); }
+        .card h4.g   { color: var(--green); }
+        .card h4.b   { color: #00B0FF; }
+
+        /* ── CHECKLIST ── */
+        .checklist { list-style: none; }
+        .checklist li {
+            display: flex; align-items: flex-start; gap: 10px;
+            font-size: 12px; padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,.04); color: #ccc;
+        }
+        .checklist li .ico {
+            color: var(--gold); font-size: 13px; margin-top: 1px; flex-shrink: 0;
+        }
+        .checklist-block {
+            background: rgba(245,197,24,.03);
+            border: 1px solid rgba(245,197,24,.1);
+            border-radius: 12px; padding: 16px 18px; margin-bottom: 12px;
+        }
+        .checklist-heading {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 10px; padding-bottom: 6px;
+            border-bottom: 1px solid rgba(245,197,24,.1);
+        }
+
+        /* ── GRID ── */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+        .do-card {
+            border: 1px solid; border-radius: 10px; padding: 12px;
+            font-size: 11px;
+        }
+        .do-card.yes { border-color: rgba(0,230,118,.25); background: rgba(0,230,118,.03); }
+        .do-card.no  { border-color: rgba(255,23,68,.25);  background: rgba(255,23,68,.04); }
+        .do-card h4  { margin-bottom: 6px; font-size: 11px; display: flex; align-items: center; gap: 6px; }
+        .do-card.yes h4 { color: var(--green); }
+        .do-card.no  h4 { color: #FF6B7A; }
+        .do-card li { list-style: none; padding: 3px 0; color: #aaa; }
+
+        /* ── STRATEGY BARS ── */
+        .strat {
+            border-left: 3px solid; padding-left: 14px; margin-bottom: 18px;
+        }
+        .strat.blue   { border-color: #00B0FF; }
+        .strat.yellow { border-color: var(--gold); }
+        .strat.red    { border-color: #FF6B7A; }
+        .strat h3 { margin-top: 0; }
+        .strat h3.blue   { color: #00B0FF; }
+        .strat h3.yellow { color: var(--gold); }
+        .strat h3.red    { color: #FF6B7A; }
+        .strat-meta {
+            display: flex; gap: 16px; flex-wrap: wrap;
+            margin-top: 6px;
+        }
+        .strat-meta span { font-family: 'Space Mono', monospace; font-size: 11px; color: #888; }
+        .strat-meta span strong { color: #ddd; }
+
+        /* ── PHASE CYCLE ── */
+        .cycle {
+            background: rgba(255,255,255,.02); border: 1px solid var(--border);
+            border-radius: 12px; padding: 14px;
+            font-family: 'Space Mono', monospace; font-size: 11px;
+            line-height: 2; margin: 12px 0;
+        }
+        .cycle .phase { display: flex; gap: 8px; align-items: baseline; }
+        .phase .tag { font-size: 9px; border-radius: 20px; padding: 1px 8px; border: 1px solid; }
+        .t-blue   { color: #00B0FF; border-color: rgba(0,176,255,.3); background: rgba(0,176,255,.06); }
+        .t-yellow { color: var(--gold); border-color: rgba(245,197,24,.3); background: rgba(245,197,24,.06); }
+        .t-purple { color: #B794F4; border-color: rgba(183,148,244,.3); background: rgba(183,148,244,.06); }
+        .t-green  { color: var(--green); border-color: rgba(0,230,118,.3); background: rgba(0,230,118,.06); }
+
+        /* ── GLOSSARY ── */
+        .gloss-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .gloss-item { border-bottom: 1px solid rgba(255,255,255,.05); padding-bottom: 10px; }
+        .gloss-term { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 3px; }
+        .gloss-def  { font-size: 11px; color: #aaa; line-height: 1.5; }
+
+        /* ── COVER ── */
+        .cover { background: var(--bg) !important; }
+        .cover-plane {
+            position: absolute; right: -40px; bottom: 40px;
+            width: 320px; opacity: .18;
+            filter: drop-shadow(0 0 60px rgba(245,197,24,.4));
+            transform: rotate(-10deg);
+        }
+        .cover-sheik {
+            position: absolute; right: 60px; top: -20px;
+            width: 280px; opacity: .15;
+        }
+        .cover-noise {
+            position: absolute; inset: 0; pointer-events: none;
+            background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="n"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23n)"/%3E%3C/svg%3E');
+            opacity: .04;
+        }
+        .cover-grid {
+            position: absolute; inset: 0; pointer-events: none;
+            background-image:
+                linear-gradient(rgba(255,255,255,.012) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.012) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .cover-content { position: relative; z-index: 2; }
+        .gold-gradient {
+            background: linear-gradient(135deg, var(--gold0), var(--gold), var(--gold2));
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ── BACK COVER ── */
+        .backcover {
+            background: var(--bg) !important;
+            border: 2px solid rgba(245,197,24,.2) !important;
+        }
+        .backcover::before { height: 0; }
+        .backcover::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), var(--gold2), transparent);
+        }
+
+        /* ── DIVIDER ── */
+        .divider {
+            display: flex; align-items: center; gap: 12px; margin: 20px 0;
+        }
+        .divider::before, .divider::after {
+            content: ''; flex: 1; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(245,197,24,.3), transparent);
+        }
+        .divider span { color: var(--gold); font-size: 12px; flex-shrink: 0; }
+
+        /* ── CALLOUT ── */
+        .callout {
+            border: 1px solid rgba(245,197,24,.25);
+            border-radius: 10px; padding: 14px 16px;
+            background: rgba(245,197,24,.03);
+            font-size: 13px; color: var(--gold); text-align: center;
+            font-weight: 700; margin: 16px 0;
+        }
+
+        /* ── PRINT ── */
+        @page { size: A4; margin: 0; }
+        @media print {
+            body { background: #000 !important; margin: 0; padding: 0; }
+            .no-print { display: none !important; }
+            .spacer { display: none !important; }
+            .ebook-page {
+                margin: 0; padding: 15mm 18mm;
+                border: none; box-shadow: none;
+                width: 100%; min-height: 100vh;
+                page-break-after: always;
+                border-radius: 0;
+            }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar no-print">
+    <div class="top-bar-note">
+        <strong><i class="fas fa-info-circle"></i> Dica:</strong>
+        Ao salvar como PDF, ative <strong>"Gráficos de plano de fundo"</strong> nas configurações da impressora.
+    </div>
+    <button class="btn-pdf" onclick="window.print()">
+        <i class="fas fa-file-pdf"></i> Salvar PDF
+    </button>
+</div>
+<div class="spacer no-print"></div>
+
+<!-- ═══════════════════════ PÁGINA 1: CAPA ═══════════════════════ -->
+<div class="ebook-page cover" style="display:flex;flex-direction:column;justify-content:center;min-height:297mm;">
+    <div class="cover-noise"></div>
+    <div class="cover-grid"></div>
+
+    <img class="cover-plane" src="/aviao3d.png" alt="">
+    <img class="cover-sheik" src="/logo-sheik.png" alt="">
+
+    <div class="cover-content" style="max-width:480px;">
+        <div class="section-label" style="margin-bottom:20px; font-size:10px;">
+            ✦ Sheik Brasileiro Milionário Apresenta
+        </div>
+
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;">
+            <img src="/logo-sheik.png" alt="Sheik" style="width:72px;height:72px;object-fit:cover;border-radius:16px;box-shadow:0 8px 32px rgba(245,197,24,.3);">
+            <div>
+                <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;">Edição VIP Exclusiva</div>
+            </div>
+        </div>
+
+        <h1 style="font-size:72px;margin-bottom:8px;">O GUIA<br>DO<br><span class="gold-gradient">AVIADOR</span></h1>
+
+        <div style="width:60px;height:3px;background:linear-gradient(135deg,var(--gold0),var(--gold));border-radius:2px;margin:20px 0;"></div>
+
+        <p style="font-size:17px;color:#888;font-style:italic;line-height:1.6;max-width:380px;">
+            "O método definitivo que transforma apostadores amadores em<strong style="color:#ccc;"> operadores consistentes.</strong>"
+        </p>
+    </div>
+
+    <div style="position:absolute;bottom:14mm;left:20mm;right:20mm;display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:#282828;letter-spacing:2px;">© 2024 SHEIK BRASILEIRO MILIONÁRIO</div>
+        <img src="/aviao3d.png" alt="" style="height:28px;opacity:.4;">
+    </div>
+
+    <div class="pg-num">01</div>
+</div>
+
+<!-- ═══════════════════════ PÁGINA 2: INTRO + CAP 1 ═══════════════════════ -->
+<div class="ebook-page">
+    <div class="section-label">Abertura</div>
+    <h2 style="margin-top:4px;">INTRODUÇÃO</h2>
+    <h3 style="color:var(--gold);margin-top:0;">Por que a maioria perde no Aviator?</h3>
+    <p>A verdade nua e crua que ninguém tem coragem de te contar: a maioria das pessoas que quebra a banca no Aviator não perde por "falta de sorte". Elas perdem por <strong>absoluta falta de método.</strong></p>
+    <p>Entram no mercado sem estratégia, apostam movidas pelo impulso, deixam a ganância dominar quando a rodada está pagando e entram em <em>tilt</em> no primeiro loss. O resultado estatístico é sempre o mesmo: saldo zerado.</p>
+    <div class="quote">
+        Este guia existe para mudar o jogo. Você vai aprender a operar com a cabeça fria, usar os sinais da Sala VIP com precisão e, o mais importante, <strong>proteger o seu capital</strong> enquanto constrói consistência. <strong>Leia do começo ao fim.</strong>
+    </div>
+
+    <div class="divider"><span>✦</span></div>
+
+    <div class="section-label">Capítulo 1</div>
+    <h2 style="margin-top:4px;">Entendendo o Jogo</h2>
+
+    <h3><i class="fas fa-gamepad" style="color:var(--gold);margin-right:8px;"></i>O que é o Aviator?</h3>
+    <p>O Aviator é um jogo da categoria <em>crash</em>. Um avião decola e um multiplicador escala — 1.00x, 1.50x, 2.00x, 5.00x... Em algum momento, o avião vai embora. Seu objetivo tático é realizar o saque <strong>antes</strong> do crash.</p>
+
+    <h3><i class="fas fa-microchip" style="color:var(--gold);margin-right:8px;"></i>O Algoritmo Provably Fair</h3>
+    <p>A casa não controla sua derrota. O Aviator usa o sistema <strong>Provably Fair</strong> — resultados gerados por algoritmo criptográfico blindado antes de cada rodada. O que isso significa na prática:</p>
+    <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:10px;padding:14px;font-family:'Space Mono',monospace;font-size:11px;line-height:2.2;margin:10px 0;">
+        <div>→ Nenhuma rodada influencia a próxima.</div>
+        <div>→ Não existe "padrão fixo" absoluto que se repete infinitamente.</div>
+        <div>→ O jogo é matematicamente aleatório.</div>
+    </div>
+
+    <h3><i class="fas fa-eye-slash" style="color:var(--gold);margin-right:8px;"></i>A Ilusão da Previsão</h3>
+    <p>Dá para prever com 100% de certeza? <strong>Não.</strong> Quem te vende essa ilusão quer o seu dinheiro. O que <strong>dá pra fazer</strong> — e que separa profissionais de amadores — é operar com disciplina, risco calculado e metodologia testada.</p>
+    <div class="pg-num">02</div>
+</div>
+
+<!-- ═══════════════════════ PÁGINA 3: CAP 2 + 3 ═══════════════════════ -->
+<div class="ebook-page">
+    <div class="section-label">Capítulo 2</div>
+    <h2 style="margin-top:4px;">Os 3 Perfis de Operador</h2>
+    <p style="margin-bottom:14px;font-style:italic;color:#777;">Antes de aplicar qualquer estratégia, identifique quem você é hoje.</p>
+
+    <div class="card card-red">
+        <h4 class="r">🔴 O Emocional — O Pagador da Banca</h4>
+        Entra em qualquer rodada sem critério técnico. Quando perde, dobra o valor para "recuperar logo". Quando ganha, sente-se invencível até devolver tudo. <strong>Resultado: quebra garantida.</strong>
+    </div>
+    <div class="card card-yellow">
+        <h4 class="y">🟡 O Ansioso — O Inconsistente</h4>
+        Tem estratégia, mas o psicológico sabota. Faz cash-out cedo demais por medo, ou a ganância consome o timing de saída. <strong>Resultado: anda de lado, não sai do zero.</strong>
+    </div>
+    <div class="card card-green">
+        <h4 class="g">🟢 O Disciplinado — O Operador VIP</h4>
+        Define métricas antes de logar. Segue o sinal friamente. Executa o alvo. Bateu a meta, fecha e vai viver a vida. <strong>Resultado: lucro consistente no longo prazo.</strong>
+    </div>
+
+    <div class="divider" style="margin:18px 0;"><span>✦</span></div>
+
+    <div class="section-label">Capítulo 3</div>
+    <h2 style="margin-top:4px;">Gestão de Banca</h2>
+    <p style="color:var(--gold);font-weight:700;">Sem gestão, toda estratégia falha. Este é o pilar da sua sobrevivência.</p>
+
+    <h3>A Regra de Ouro (1% a 5%)</h3>
+    <p>Nunca exponha mais de 1% a 5% do capital em uma única entrada. Veja a matemática da consistência:</p>
+
+    <table>
+        <thead>
+            <tr><th>Banca</th><th>Conservadora (1%)</th><th>Moderada (3%)</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>R$ 50,00</td><td class="g">R$ 0,50</td><td class="g">R$ 1,50</td></tr>
+            <tr><td>R$ 100,00</td><td class="g">R$ 1,00</td><td class="g">R$ 3,00</td></tr>
+            <tr><td>R$ 200,00</td><td class="g">R$ 2,00</td><td class="g">R$ 6,00</td></tr>
+            <tr><td>R$ 500,00</td><td class="g">R$ 5,00</td><td class="g">R$ 15,00</td></tr>
+            <tr><td>R$ 1.000,00</td><td class="g">R$ 10,00</td><td class="g">R$ 30,00</td></tr>
+        </tbody>
+    </table>
+
+    <p style="font-size:11px;color:#555;"><em>Com 1% por rodada, você precisa errar 100 rodadas SEGUIDAS pra zerar. Com 20%, bastam 5 reds. Proteja o capital.</em></p>
+
+    <h3>Stop Loss & Stop Win</h3>
+    <div class="grid-2" style="margin-top:10px;">
+        <div class="card card-red" style="margin-bottom:0"><h4 class="r"><i class="fas fa-shield-alt"></i> Stop Loss (Teto de Perda)</h4>Limite diário de prejuízo.<br><strong>Recomendado: 20–30% da banca.</strong></div>
+        <div class="card card-green" style="margin-bottom:0"><h4 class="g"><i class="fas fa-trophy"></i> Stop Win (Meta de Ganho)</h4>Alvo diário de lucro.<br><strong>Recomendado: 30–50% da banca.</strong></div>
+    </div>
+    <div class="callout" style="margin-top:14px;">Atingiu qualquer um dos stops? FECHE O JOGO. O mercado estará lá amanhã.</div>
+    <div class="pg-num">03</div>
+</div>
+
+<!-- ═══════════════════════ PÁGINA 4: CAP 4 + 5 ═══════════════════════ -->
+<div class="ebook-page">
+    <div class="section-label">Capítulo 4</div>
+    <h2 style="margin-top:4px;">Maximizando a Sala VIP</h2>
+
+    <div style="display:flex;gap:14px;align-items:center;margin-bottom:14px;">
+        <img src="/logo-sheik.png" alt="" style="width:48px;height:48px;object-fit:cover;border-radius:10px;flex-shrink:0;">
+        <p style="margin:0;">Nossos sinais não são adivinhação — são <strong>estatística pura</strong> cruzada com o fluxo do algoritmo. Veja como extrair valor máximo da Inteligência Artificial.</p>
+    </div>
+
+    <h3>O Ciclo de Operação</h3>
+    <div class="cycle">
+        <div class="phase"><span class="tag t-blue">1 · ANALISANDO</span><span style="color:#888;">A IA mapeia o histórico. <strong style="color:#ccc;">Não faça nada.</strong></span></div>
+        <div class="phase"><span class="tag t-yellow">2 · CONFIRMADO</span><span style="color:#888;">Faça a entrada imediatamente com o alvo configurado.</span></div>
+        <div class="phase"><span class="tag t-purple">3 · RODANDO</span><span style="color:#888;">Cash-out automático ativado. Não toque no botão.</span></div>
+        <div class="phase"><span class="tag t-green">4 · RESULTADO</span><span style="color:#888;">GREEN ou LOSS — respire e aguarde a próxima leitura.</span></div>
+    </div>
+
+    <div class="grid-2" style="margin:16px 0;">
+        <div class="do-card yes">
+            <h4><i class="fas fa-check-circle"></i> FAÇA</h4>
+            <ul><li>→ Entrar SÓ com sinal confirmado</li><li>→ Usar o Auto Cash-Out</li><li>→ Sair no alvo exato indicado</li></ul>
+        </div>
+        <div class="do-card no">
+            <h4><i class="fas fa-times-circle"></i> NÃO FAÇA</h4>
+            <ul><li>→ Operar no escuro (sem sinal)</li><li>→ Cancelar o saque por ganância</li><li>→ Martingale após red</li></ul>
+        </div>
+    </div>
+
+    <div class="divider"><span>✦</span></div>
+
+    <div class="section-label">Capítulo 5</div>
+    <h2 style="margin-top:4px;">Estratégias de Combate</h2>
+
+    <div class="strat blue">
+        <h3 class="blue">1. Abordagem Conservadora <span style="font-size:11px;font-weight:400;color:#888;">(Iniciantes)</span></h3>
+        <div class="strat-meta">
+            <span>🎯 Alvo: <strong>1.50x a 2.00x</strong></span>
+            <span>💰 Aposta: <strong>1% do saldo</strong></span>
+            <span>📈 Meta: <strong>Alta taxa de acerto</strong></span>
+        </div>
+    </div>
+
+    <div class="strat yellow">
+        <h3 class="yellow">2. Abordagem Moderada <span style="font-size:11px;font-weight:400;color:#888;">(Experientes)</span></h3>
+        <div class="strat-meta">
+            <span>🎯 Alvo: <strong>2.00x a 3.00x</strong></span>
+            <span>💰 Aposta: <strong>2–3% do saldo</strong></span>
+            <span>📈 Meta: <strong>Sinais >75% confiança</strong></span>
+        </div>
+    </div>
+
+    <div class="strat red">
+        <h3 class="red">3. Tiro de Sniper <span style="font-size:11px;font-weight:400;color:#888;">(Alto Risco — Avançado)</span></h3>
+        <div class="strat-meta">
+            <span>🎯 Alvo: <strong>5.00x+</strong></span>
+            <span>💰 Aposta: <strong>MÁX. 1% do saldo</strong></span>
+            <span>⚠️ Requer: <strong>Controle emocional de aço</strong></span>
+        </div>
+        <p style="margin-top:8px;font-size:11px;color:#888;">Frequência baixa de acerto, mas lucro brutal quando bate. Só execute se já dominar as estratégias 1 e 2.</p>
+    </div>
+    <div class="pg-num">04</div>
+</div>
+
+<!-- ═══════════════════════ PÁGINA 5: CAP 6 + 7 ═══════════════════════ -->
+<div class="ebook-page">
+    <div class="section-label">Capítulo 6</div>
+    <h2 style="margin-top:4px;">A Psicologia do Jogo</h2>
+
+    <div style="border:1px solid rgba(245,197,24,.15);border-radius:12px;padding:16px 20px;text-align:center;margin-bottom:20px;">
+        <p style="font-size:18px;font-family:'Outfit',sans-serif;font-style:italic;color:var(--gold);margin:0;">"A maior batalha não é contra o algoritmo.<br>É contra a sua própria mente."</p>
+    </div>
+
+    <h3><i class="fas fa-fire" style="color:#FF6B7A;margin-right:8px;"></i>Inimigo Nº 1: O Tilt</h3>
+    <p style="font-size:12px;">Estado de curto-circuito emocional após sequência de perdas. Sintomas: aumentar brutalmente a aposta para "recuperar logo", ignorar toda a gestão, clicar compulsivamente.</p>
+    <div class="card card-red">
+        <strong style="color:#FF6B7A;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Antídoto:</strong> Sentiu o sangue ferver? Tire a mão do mouse. Feche o site. Este dia de operação está encerrado.
+    </div>
+
+    <h3 style="margin-top:16px;"><i class="fas fa-coins" style="color:var(--gold);margin-right:8px;"></i>Inimigo Nº 2: A Ganância</h3>
+    <p style="font-size:12px;">Devolve fortunas para as casas todos os dias. Ocorre quando você atinge a meta, mas pensa: <em>"Tá indo bem, só mais uma."</em> Ou quando o sinal manda sair em 2.00x e você segura achando que sobe mais.</p>
+    <div class="card card-yellow">
+        <strong style="color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:1px;">Antídoto:</strong> Automatize tudo. Ative o Auto Cash-Out no alvo e não encoste no botão.
+    </div>
+
+    <div class="divider" style="margin:20px 0;"><span>✦</span></div>
+
+    <div class="section-label">Capítulo 7</div>
+    <h2 style="margin-top:4px;">O Ritual do Operador VIP</h2>
+    <p style="color:#777;font-size:12px;margin-bottom:14px;">Execute este checklist inegociável a cada sessão.</p>
+
+    <div class="checklist-block">
+        <div class="checklist-heading"><i class="fas fa-clipboard-list" style="margin-right:6px;"></i>Pré-Sessão</div>
+        <ul class="checklist">
+            <li><span class="ico">⬡</span> Defini o saldo exato do dia</li>
+            <li><span class="ico">⬡</span> Calculei o Stop Loss e Stop Win matematicamente</li>
+            <li><span class="ico">⬡</span> Configurei o valor fixo da entrada (1–3%)</li>
+            <li><span class="ico">⬡</span> Sala VIP aberta e sinal monitorado</li>
+            <li><span class="ico">⬡</span> Estado emocional neutro e focado</li>
+        </ul>
+    </div>
+
+    <div class="checklist-block">
+        <div class="checklist-heading"><i class="fas fa-desktop" style="margin-right:6px;"></i>Durante o Combate</div>
+        <ul class="checklist">
+            <li><span class="ico">⬡</span> Entro APENAS com sinal confirmado</li>
+            <li><span class="ico">⬡</span> Auto Cash-Out ativado no alvo indicado</li>
+            <li><span class="ico">⬡</span> Monitoro apenas para acionar os Stops</li>
+        </ul>
+    </div>
+
+    <div class="checklist-block">
+        <div class="checklist-heading"><i class="fas fa-flag-checkered" style="margin-right:6px;"></i>Pós-Sessão</div>
+        <ul class="checklist">
+            <li><span class="ico">⬡</span> Bati a meta ou o limite? Fecho e paro.</li>
+            <li><span class="ico">⬡</span> Saco parte do lucro para materializar o ganho</li>
+        </ul>
+    </div>
+    <div class="pg-num">05</div>
+</div>
+
+<!-- ═══════════════════════ PÁGINA 6: CAP 8 + 9 ═══════════════════════ -->
+<div class="ebook-page">
+    <div class="section-label">Capítulo 8</div>
+    <h2 style="margin-top:4px;">Diagnóstico de Erros Fatais</h2>
+
+    <table>
+        <thead>
+            <tr><th>Erro Letal</th><th>A Causa</th><th>O que o VIP faz</th></tr>
+        </thead>
+        <tbody>
+            <tr><td class="r">Entrar antes do sinal</td><td>FOMO, ansiedade</td><td class="g">Disciplina: só com autorização da IA</td></tr>
+            <tr><td class="r">Ignorar o alvo de saída</td><td>Ganância</td><td class="g">Auto Cash-Out remove o fator humano</td></tr>
+            <tr><td class="r">Dobrar após red</td><td>Desespero de recuperar</td><td class="g">Mantém % de gestão friamente</td></tr>
+            <tr><td class="r">Dinheiro de conta</td><td>Pressão e irresponsabilidade</td><td class="g">Opera só com capital de risco dedicado</td></tr>
+            <tr><td class="r">Pular de sala em sala</td><td>Busca por "pote de ouro" mágico</td><td class="g">Foca em uma única metodologia validada</td></tr>
+            <tr><td class="r">Ignorar stop win</td><td>"Tá indo bem, mais uma"</td><td class="g">Fecha o site ao bater a meta. Sempre.</td></tr>
+        </tbody>
+    </table>
+
+    <div class="divider" style="margin:22px 0;"><span>✦</span></div>
+
+    <div class="section-label">Capítulo 9</div>
+    <h2 style="margin-top:4px;">A Arte de Sacar</h2>
+    <p style="color:var(--gold);font-weight:700;font-size:15px;">Lucro não sacado é saldo ilusório.</p>
+
+    <h3><i class="fas fa-wallet" style="color:#888;margin-right:8px;"></i>A Regra do Capital de Risco</h3>
+    <p style="font-size:12px;">Nunca deposite o dinheiro do aluguel, luz ou comida. O capital na plataforma é 100% "capital de risco". Se perder esse valor te causa pânico, você já perdeu antes de decolar — operará sob pressão emocional que destrói qualquer estratégia.</p>
+
+    <h3><i class="fas fa-money-bill-wave" style="color:var(--green);margin-right:8px;"></i>Quando acionar o saque?</h3>
+    <div class="card card-green" style="margin-bottom:8px;">
+        <strong style="color:var(--green);">Meta da Dobra:</strong> Dobrou a banca inicial? Saque 50% agora. Você passa a operar apenas com lucro — risco zero sobre o principal.
+    </div>
+    <div class="card card-green">
+        <strong style="color:var(--green);">Salário Semanal:</strong> Toda sexta-feira no verde, saque 30–50% do lucro da semana para a sua conta. Gaste consigo mesmo.
+    </div>
+
+    <div class="divider" style="margin:20px 0;"><span>✦</span></div>
+
+    <div class="section-label">Conclusão</div>
+    <h2 style="margin-top:4px;color:#fff;">O Peso da Consistência</h2>
+    <p style="font-size:13px;">Você não vai acordar milionário amanhã operando Aviator. Quem promete isso quer seu dinheiro. No entanto, se você aplicar os princípios deste guia, três coisas acontecerão:</p>
+    <div style="font-family:'Space Mono',monospace;font-size:11px;line-height:2.4;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:10px;padding:14px;margin:8px 0;">
+        <div><span style="color:var(--gold);">01 →</span> <span style="color:#ccc;">Você parará de quebrar bancas como amador.</span></div>
+        <div><span style="color:var(--gold);">02 →</span> <span style="color:#ccc;">Seu capital começará a crescer de forma metódica.</span></div>
+        <div><span style="color:var(--gold);">03 →</span> <span style="color:#ccc;">Você se desvinculará da sorte e operará com inteligência.</span></div>
+    </div>
+    <p style="font-size:13px;color:var(--gold);font-weight:700;text-align:center;margin-top:12px;">O mercado é uma maratona brutal. Só sobrevive quem tem gestão. Bons voos. ✈️</p>
+    <div class="pg-num">06</div>
+</div>
+
+<!-- ═══════════════════════ PÁGINA 7: GLOSSÁRIO ═══════════════════════ -->
+<div class="ebook-page">
+    <div style="text-align:center;margin-bottom:24px;">
+        <div class="section-label">Bônus Exclusivo</div>
+        <h2 style="text-align:center;border:none;padding:0;margin-top:4px;font-size:32px;">O Dicionário do Operador</h2>
+        <p style="text-align:center;color:#555;font-size:12px;">Termos que todo operador VIP precisa dominar</p>
+    </div>
+
+    <div class="gloss-grid">
+        <div class="gloss-item">
+            <div class="gloss-term">Crash</div>
+            <div class="gloss-def">O exato momento em que a rodada encerra e o multiplicador para de subir.</div>
+        </div>
+        <div class="gloss-item">
+            <div class="gloss-term">Cash-Out</div>
+            <div class="gloss-def">Realizar o saque e garantir o lucro antes do crash acontecer.</div>
+        </div>
+        <div class="gloss-item">
+            <div class="gloss-term">Banca / Bankroll</div>
+            <div class="gloss-def">O capital total depositado na plataforma disponível para operar.</div>
+        </div>
+        <div class="gloss-item">
+            <div class="gloss-term">Stop Loss</div>
+            <div class="gloss-def">Limite inegociável de perda em uma sessão. Atingiu? Para.</div>
+        </div>
+        <div class="gloss-item">
+            <div class="gloss-term">Stop Win</div>
+            <div class="gloss-def">Meta absoluta de lucro. Atingiu? Fecha tudo e vai viver.</div>
+        </div>
+        <div class="gloss-item">
+            <div class="gloss-term">Tilt</div>
+            <div class="gloss-def">Estado psicológico danificado que drena o controle e destrói bancas.</div>
+        </div>
+        <div class="gloss-item">
+            <div class="gloss-term">Green</div>
+            <div class="gloss-def">Vitória. Lucro. Operação bem-sucedida dentro do alvo.</div>
+        </div>
+        <div class="gloss-item">
+            <div class="gloss-term">Red / Loss</div>
+            <div class="gloss-def">Derrota. O avião voou antes de atingir o alvo configurado.</div>
+        </div>
+        <div class="gloss-item">
+            <div class="gloss-term">Multiplicador</div>
+            <div class="gloss-def">O número crescente (1.00x, 2.00x...) que define seu lucro no saque.</div>
+        </div>
+        <div class="gloss-item">
+            <div class="gloss-term">Provably Fair</div>
+            <div class="gloss-def">Protocolo criptográfico aberto que prova a aleatoriedade do jogo.</div>
+        </div>
+        <div class="gloss-item">
+            <div class="gloss-term">Sala VIP</div>
+            <div class="gloss-def">Nosso canal exclusivo com sinais de IA em tempo real 24h.</div>
+        </div>
+        <div class="gloss-item">
+            <div class="gloss-term">Confiança (%)</div>
+            <div class="gloss-def">Índice de certeza do sinal gerado pelo algoritmo de análise.</div>
+        </div>
+    </div>
+
+    <div style="margin-top:30px;padding:16px;border:1px solid rgba(245,197,24,.15);border-radius:12px;background:rgba(245,197,24,.03);text-align:center;">
+        <img src="/logo-sheik.png" alt="" style="width:52px;height:52px;object-fit:cover;border-radius:10px;margin-bottom:10px;">
+        <p style="font-size:12px;color:#777;margin:0;">Conhecimento é edge.<br>Gestão é sobrevivência.<br><strong style="color:var(--gold);">Disciplina é o único cheat code que existe.</strong></p>
+    </div>
+    <div class="pg-num">07</div>
+</div>
+
+<!-- ═══════════════════════ PÁGINA 8: CONTRACAPA ═══════════════════════ -->
+<div class="ebook-page backcover" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:297mm;">
+    <div class="cover-noise"></div>
+    <div class="cover-grid"></div>
+    <img class="cover-plane" src="/aviao3d.png" alt="" style="opacity:.12;width:280px;bottom:60px;">
+
+    <div style="position:relative;z-index:2;max-width:440px;">
+        <img src="/logo-sheik.png" alt="" style="width:90px;height:90px;object-fit:cover;border-radius:20px;margin-bottom:20px;box-shadow:0 12px 40px rgba(245,197,24,.25);">
+
+        <h2 style="font-size:42px;color:#fff;border:none;padding:0;margin-bottom:8px;">Sua jornada<br><span class="gold-gradient">apenas começou.</span></h2>
+
+        <p style="font-size:14px;color:#555;font-style:italic;margin-bottom:32px;">"Amadores dependem da sorte.<br>Nós dependemos de método, inteligência e execução."</p>
+
+        <div style="background:rgba(255,255,255,.02);border:1px solid rgba(245,197,24,.15);border-radius:16px;padding:24px;width:100%;max-width:380px;margin:0 auto 28px;">
+            <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;">Acesse o Quartel General</div>
+
+            <a href="https://discord.gg/2evPNS7TwZ" target="_blank"
+               style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:#5865F2;color:#fff;font-weight:800;font-family:'Outfit',sans-serif;padding:14px;border-radius:12px;text-decoration:none;margin-bottom:10px;font-size:13px;">
+                <i class="fab fa-discord"></i> Comunidade VIP Discord
+            </a>
+
+            <a href="https://7games.bet.br" target="_blank"
+               style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:1px solid rgba(245,197,24,.4);color:var(--gold);font-weight:800;font-family:'Outfit',sans-serif;padding:14px;border-radius:12px;text-decoration:none;font-size:13px;">
+                <i class="fas fa-play"></i> Plataforma Oficial 7Games
+            </a>
+        </div>
+
+        <!-- Print version -->
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#333;">
+            discord.gg/2evPNS7TwZ &nbsp;·&nbsp; 7games.bet.br
+        </div>
+    </div>
+
+    <div style="position:absolute;bottom:14mm;left:20mm;right:20mm;display:flex;justify-content:center;">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:#222;letter-spacing:2px;border-top:1px solid #1a1a1a;padding-top:12px;text-align:center;width:100%;">
+            SHEIK BRASILEIRO MILIONÁRIO © 2024 · DISTRIBUIÇÃO VIP EXCLUSIVA
+        </div>
+    </div>
+    <div class="pg-num">08</div>
+</div>
+
+</body>
+</html>
