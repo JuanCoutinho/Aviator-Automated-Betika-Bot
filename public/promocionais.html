@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materiais de Divulgação — Método Sheik Milionário</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #F5C518;
+            --gold-dark: #B8860B;
+            --bg: #050505;
+            --glass: rgba(15,15,15,0.8);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: #fff;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #888;
+            font-size: 18px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .banner-row {
+            grid-column: 1 / -1;
+        }
+        .card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 20px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(245, 197, 24, 0.4);
+        }
+        .card-img {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #111;
+            margin-bottom: 20px;
+        }
+        .card-img img {
+            width: 100%;
+            display: block;
+        }
+        .card-info h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .card-info p {
+            color: #A0A0A0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #000;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 900;
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        @media(max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Materiais Promocionais</h1>
+            <p>Artes oficiais para divulgação do Método Sheik Brasileiro Milionário</p>
+        </header>
+
+        <div class="grid">
+            <!-- Banner -->
+            <div class="card banner-row">
+                <div class="card-img">
+                    <img src="file:///home/red/.gemini/antigravity/brain/5dd304ed-326d-4296-9765-438051a2a149/sheik_promo_banner_1776955632121.png" alt="Banner Landscape">
+                </div>
+                <div class="card-info">
+                    <h3>Banner de Cabeçalho / Capa</h3>
+                    <p>Ideal para capas de Facebook, cabeçalhos de site e mídia horizontal. Retrata poder e riqueza com a decolagem exponencial.</p>
+                    <a href="file:///home/red/.gemini/antigravity/brain/5dd304ed-326d-4296-9765-438051a2a149/sheik_promo_banner_1776955632121.png" download class="download-btn">Baixar Arte</a>
+                </div>
+            </div>
+
+            <!-- Post 1 -->
+            <div class="card">
+                <div class="card-img">
+                    <img src="file:///home/red/.gemini/antigravity/brain/5dd304ed-326d-4296-9765-438051a2a149/sheik_promo_post_1_1776955584144.png" alt="Post Instagram 1">
+                </div>
+                <div class="card-info">
+                    <h3>Post: Convite Sala VIP</h3>
+                    <p>Post com forte CTA (Call to Action). Exibe gráficos multiplicadores altos com tema escuro e dourado. Foco em autoridade e luxo.</p>
+                    <a href="file:///home/red/.gemini/antigravity/brain/5dd304ed-326d-4296-9765-438051a2a149/sheik_promo_post_1_1776955584144.png" download class="download-btn">Baixar Arte</a>
+                </div>
+            </div>
+
+            <!-- Post 2 -->
+            <div class="card">
+                <div class="card-img">
+                    <img src="file:///home/red/.gemini/antigravity/brain/5dd304ed-326d-4296-9765-438051a2a149/sheik_promo_post_2_1776955608440.png" alt="Post Instagram 2">
+                </div>
+                <div class="card-info">
+                    <h3>Post: Green na Mão</h3>
+                    <p>Arte promocional super chamativa para stories e feed. Focada no alerta do celular capturando multiplicadores insanos para a tropa do sheik.</p>
+                    <a href="file:///home/red/.gemini/antigravity/brain/5dd304ed-326d-4296-9765-438051a2a149/sheik_promo_post_2_1776955608440.png" download class="download-btn">Baixar Arte</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
