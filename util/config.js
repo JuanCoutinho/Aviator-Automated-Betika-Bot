@@ -1,6 +1,6 @@
 const config = {
     NAVIGATION: {
-        BASE_URL: 'https://spribe.co/welcome',
+        BASE_URL: 'https://7games.bet.br',
         TIMEOUT: 60000,
         RUN_DURATION: 24 * 60 * 60 * 1000 // 24 hours
     },
@@ -11,12 +11,10 @@ const config = {
     },
     SELECTORS: {
         INITIAL: {
-            ACCORDION: '.accordion-body.shadow',
-            DEMO_BUTTON: '.btn.btn-primary.btn-lg.px-5.btn-demo.btn-danger',
-            AGE_BUTTON: '.btn.btn-md.btn-primary.btn-age'
+            // Removendo seletores de demo que não existem no Betika
         },
         GAME: {
-            BUBBLE_MULTIPLIER: '.payouts-wrapper .bubble-multiplier',
+            BUBBLE_MULTIPLIER: 'app-bubble-multiplier',
             BALANCE: '.balance .amount',
             BET_BUTTON: 'div.buttons-block > button.btn.btn-success.bet.ng-star-inserted',
             CASHOUT_BUTTON: 'button.cashout.ng-star-inserted',

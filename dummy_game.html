@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dummy Aviator</title>
+</head>
+<body>
+    <div class="balance">Saldo: <span class="amount">1000.00</span></div>
+    
+    <div class="payouts-wrapper" id="history">
+        <div class="bubble-multiplier">1.10x</div>
+        <div class="bubble-multiplier">1.05x</div>
+        <div class="bubble-multiplier">1.20x</div>
+    </div>
+
+    <div class="buttons-block">
+        <input inputmode="decimal" value="1.00">
+        <button class="btn btn-success bet ng-star-inserted">Bet</button>
+        <button class="cashout ng-star-inserted" style="display:none;">Cashout</button>
+        <div class="amount" style="display:none;"><span>1.00</span></div>
+    </div>
+
+    <script>
+        let historyDiv = document.getElementById('history');
+        let betBtn = document.querySelector('.bet');
+        
+        function simulateGameEnd() {
+            // Gera um multiplicador de crash aleatório entre 1.00x e 4.00x
+            let crashMultiplier = (1 + Math.random() * 3).toFixed(2);
+            
+            // Adiciona a nova vela no histórico (simulando que o jogo acabou)
+            let newBubble = document.createElement('div');
+            newBubble.className = 'bubble-multiplier';
+            newBubble.textContent = crashMultiplier + 'x';
+            historyDiv.insertBefore(newBubble, historyDiv.firstChild);
+            
+            // Libera o botão de aposta simulando o tempo de espera
+            betBtn.disabled = false;
+            console.log("Jogo acabou. Crash: " + crashMultiplier + "x. Botões liberados.");
+            
+            // Bloqueia o botão simulando que o avião decolou novamente
+            setTimeout(() => {
+                betBtn.disabled = true;
+                console.log("Avião decolou. Apostas fechadas.");
+            }, 3000);
+        }
+
+        // Simula o final de uma partida a cada 8 segundos
+        setInterval(simulateGameEnd, 8000);
+        // Começa com aposta bloqueada
+        betBtn.disabled = true;
+    </script>
+</body>
+</html>
