@@ -232,8 +232,7 @@
             align-items: center; justify-content: center;
             padding: clamp(10px, 2vh, 20px); gap: clamp(10px, 2vh, 18px);
             position: relative;
-            overflow-y: auto;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
         /* Avião voando */
@@ -257,7 +256,7 @@
         }
         /* Avião principal flutuando no centro */
         .plane-hero {
-            width: clamp(130px, 18vh, 200px);
+            width: clamp(130px, 15vmin, 200px);
             animation: floatPlane 4s ease-in-out infinite;
             filter: drop-shadow(0 0 30px rgba(245,197,24,.3));
             flex-shrink: 0;
@@ -280,7 +279,7 @@
             font-family: var(--font-mono);
         }
         #MULT {
-            font-size: clamp(70px, 12vh, 110px);
+            font-size: clamp(70px, 8vmin, 110px);
             font-weight: 900;
             letter-spacing: -5px;
             line-height: 1;
@@ -350,15 +349,15 @@
 
         #RND { font-size: 12px; color: var(--dim); font-weight: 600; font-family: var(--font-mono); }
 
-        #HL { font-size: clamp(20px, 3vh, 24px); font-weight: 900; min-height: 30px; letter-spacing: -.5px; margin-bottom: clamp(10px, 1.5vh, 16px); font-family: var(--font-display); }
+        #HL { font-size: clamp(20px, 3vmin, 24px); font-weight: 900; min-height: 30px; letter-spacing: -.5px; margin-bottom: clamp(10px, 1.5vmin, 16px); font-family: var(--font-display); }
 
-        .sig-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: clamp(6px, 1vw, 8px); margin-bottom: clamp(10px, 1.5vh, 14px); }
+        .sig-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: clamp(6px, 1vw, 8px); margin-bottom: clamp(10px, 1.5vmin, 14px); }
         .sg {
             background: rgba(255,255,255,.025); border: 1px solid rgba(255,255,255,.06);
             border-radius: 11px; padding: 11px 12px;
         }
         .sg-l { font-size: 9px; color: var(--dim); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 5px; font-family: var(--font-mono); }
-        .sg-v { font-size: clamp(17px, 2.5vh, 20px); font-weight: 800; color: var(--gold); font-family: var(--font-display); }
+        .sg-v { font-size: clamp(17px, 2.5vmin, 20px); font-weight: 800; color: var(--gold); font-family: var(--font-display); }
 
         .conf-row { display:flex; align-items:center; gap:10px; }
         .conf-lbl { font-size: 11px; color: var(--dim); white-space: nowrap; }
