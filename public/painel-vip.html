@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sala VIP — Sheik Brasileiro Sinais</title>
     <link rel="icon" href="/aviao3d.png">
-    <script src="/socket.io/socket.io.js"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -721,8 +721,11 @@
 </div>
 
 <script>
-const io_s = io();
-let maxM = 0, sumM = 0, cntM = 0, online = 100;
+// ── Polling: substitui Socket.IO, compatível com Vercel serverless ──
+let lastCycleNum = -1;
+let lastResultCycle = -1;
+let histInited = false;
+let online = 100;
 
 // Online oscilante
 setInterval(() => {
@@ -732,72 +735,94 @@ setInterval(() => {
     ['H-ON','RS-ON','ONL'].forEach(id => document.getElementById(id).textContent = o);
 }, 6000);
 
-io_s.on('game_update', d => {
-    const m   = parseFloat(d.multiplicador)||1;
-    const est = d.estado;
-    const sig = d.sinal;
-    const rd  = d.totalRodadas||0;
-    const wr  = d.winRate||'—';
+async function pollSignal() {
+    try {
+        const d = await fetch('/api/signal').then(r => r.json());
+        const m   = parseFloat(d.multiplicador) || 1;
+        const est = d.estado;
+        const sig = d.sinal;
+        const rd  = d.totalRodadas || 0;
+        const wr  = d.winRate || '—';
 
-    /* Multiplicador */
-    const ME = document.getElementById('MULT');
-    ME.textContent = m.toFixed(2)+'x';
-    ME.className = est==='rodando'?'run': d.green===true?'gm': d.green===false?'rm':'';
-
-    const MS = document.getElementById('MULT-SUB');
-
-    if (est==='analisando') {
-        MS.textContent='🔍 Analisando padrões...';
-        setSig('sa','ba','🔍 ANALISANDO', `⏳ Processando padrões da rodada #${rd+1}…`, 'var(--gold)', sig);
-    } else if (est==='entrada') {
-        MS.textContent='🚨 SINAL CONFIRMADO — Entre agora!';
-        setSig('se','be','🚨 CONFIRMADO', `🚀 ENTRADA! Saída em <span style="color:var(--green)">${sig?.alvo}x</span>`, '#fff', sig, true);
-        pushAct(`🚀 Sinal confirmado — alvo ${sig?.alvo}x`, 'y');
-    } else if (est==='rodando') {
-        MS.textContent='✈️ Rodada em andamento';
-        setSig(sig?.deveEntrar?'sr':'', 'br', '✈️ EM ANDAMENTO',
-            sig?.deveEntrar ? `⚡ ATIVO — aguarde <span style="color:var(--gold)">${sig.alvo}x</span>` : '📊 Sem entrada nessa rodada',
-            sig?.deveEntrar?'#fff':'var(--dim)', sig, true);
-    } else if (est==='resultado') {
-        if (d.green===true) {
-            MS.textContent='✅ GREEN!';
-            setSig('sg','bg','✅ GREEN', `🏆 GREEN confirmado em <span style="color:var(--green)">${m.toFixed(2)}x</span>!`, '#fff', sig, true);
-            flash('g','✅','GREEN!', m.toFixed(2)+'x');
-            pushAct(`✅ GREEN — ${m.toFixed(2)}x`, 'g');
-            addHist(m, 'green');
-            maxM = Math.max(maxM, m); sumM+=m; cntM++;
-        } else if (d.green===false) {
-            MS.textContent='❌ Loss';
-            setSig('sl','bl','❌ LOSS', `Mercado caiu em <span style="color:var(--red)">${m.toFixed(2)}x</span>`, '#fff', sig, true);
-            flash('r','❌','LOSS', m.toFixed(2)+'x');
-            pushAct(`❌ Loss — ${m.toFixed(2)}x`, 'r');
-            addHist(m, 'red');
-            maxM = Math.max(maxM,m); sumM+=m; cntM++;
-        } else {
-            MS.textContent=`Resultado: ${m.toFixed(2)}x`;
-            setSig('','bw','➖ SEM ENTRADA', `Rodada finalizada em ${m.toFixed(2)}x`, 'var(--dim)', sig);
-            addHist(m,'none');
-            maxM = Math.max(maxM,m); sumM+=m; cntM++;
+        // Inicializa histórico 1 vez com dados da API
+        if (!histInited && d.history?.length) {
+            histInited = true;
+            d.history.slice().reverse().forEach(h => {
+                const res = !h.entered ? 'none' : h.green ? 'green' : 'red';
+                addHist(h.mult, res, true);
+            });
         }
-    } else {
-        MS.textContent='⏳ Próxima rodada em breve...';
-        setSig('','bw','AGUARDANDO','Aguardando próxima rodada…','var(--dim)',sig);
-    }
 
-    // Counters
-    ['H-RD','LS-RD','RS-RD'].forEach(i=>document.getElementById(i).textContent=rd);
-    const wrStr = wr+'%';
-    ['H-WR','LS-WR','RS-WR'].forEach(i=>document.getElementById(i).textContent=wrStr);
-    document.getElementById('RS-WR-TAG').textContent = wrStr;
-    document.getElementById('RND').textContent = `Rodada #${rd}`;
+        // Detecta novo ciclo
+        if (d.cycleNum !== lastCycleNum) lastCycleNum = d.cycleNum;
 
-    if (maxM>0) {
-        const mx = maxM.toFixed(2)+'x';
-        document.getElementById('LS-MAX').textContent = mx;
-        document.getElementById('RS-MX').textContent  = mx;
-    }
-    if (cntM>0) document.getElementById('LS-AVG').textContent = (sumM/cntM).toFixed(2)+'x';
-});
+        /* Multiplicador */
+        const ME = document.getElementById('MULT');
+        ME.textContent = m.toFixed(2)+'x';
+        ME.className = est==='rodando'?'run': d.green===true?'gm': d.green===false?'rm':'';
+
+        const MS = document.getElementById('MULT-SUB');
+
+        if (est==='analisando') {
+            MS.textContent='🔍 Analisando padrões...';
+            setSig('sa','ba','🔍 ANALISANDO', `⏳ Processando padrões da rodada #${rd+1}…`, 'var(--gold)', sig);
+        } else if (est==='entrada') {
+            MS.textContent='🚨 SINAL CONFIRMADO — Entre agora!';
+            setSig('se','be','🚨 CONFIRMADO', `🚀 ENTRADA! Saída em <span style="color:var(--green)">${sig?.alvo}x</span>`, '#fff', sig, true);
+            if (d.cycleNum !== lastResultCycle - 1) pushAct(`🚀 Sinal confirmado — alvo ${sig?.alvo}x`, 'y');
+        } else if (est==='rodando') {
+            MS.textContent='✈️ Rodada em andamento';
+            setSig(sig?.deveEntrar?'sr':'', 'br', '✈️ EM ANDAMENTO',
+                sig?.deveEntrar ? `⚡ ATIVO — aguarde <span style="color:var(--gold)">${sig.alvo}x</span>` : '📊 Sem entrada nessa rodada',
+                sig?.deveEntrar?'#fff':'var(--dim)', sig, true);
+        } else if (est==='resultado' && d.cycleNum !== lastResultCycle) {
+            // Resultado: processa só 1x por ciclo
+            lastResultCycle = d.cycleNum;
+            if (d.green===true) {
+                MS.textContent='✅ GREEN!';
+                setSig('sg','bg','✅ GREEN', `🏆 GREEN confirmado em <span style="color:var(--green)">${m.toFixed(2)}x</span>!`, '#fff', sig, true);
+                flash('g','✅','GREEN!', m.toFixed(2)+'x');
+                pushAct(`✅ GREEN — ${m.toFixed(2)}x`, 'g');
+                addHist(m, 'green');
+            } else if (d.green===false) {
+                MS.textContent='❌ Loss';
+                setSig('sl','bl','❌ LOSS', `Mercado caiu em <span style="color:var(--red)">${m.toFixed(2)}x</span>`, '#fff', sig, true);
+                flash('r','❌','LOSS', m.toFixed(2)+'x');
+                pushAct(`❌ Loss — ${m.toFixed(2)}x`, 'r');
+                addHist(m, 'red');
+            } else {
+                MS.textContent=`Resultado: ${m.toFixed(2)}x`;
+                setSig('','bw','➖ SEM ENTRADA', `Rodada finalizada em ${m.toFixed(2)}x`, 'var(--dim)', sig);
+                addHist(m,'none');
+            }
+        } else if (est==='resultado') {
+            // mantém tela do resultado já exibido
+        } else {
+            MS.textContent='⏳ Próxima rodada em breve...';
+            setSig('','bw','AGUARDANDO','Aguardando próxima rodada…','var(--dim)',sig);
+        }
+
+        // Contadores
+        ['H-RD','LS-RD','RS-RD'].forEach(i=>document.getElementById(i).textContent=rd);
+        const wrStr = wr+'%';
+        ['H-WR','LS-WR','RS-WR'].forEach(i=>document.getElementById(i).textContent=wrStr);
+        document.getElementById('RS-WR-TAG').textContent = wrStr;
+        document.getElementById('RND').textContent = `Rodada #${rd}`;
+
+        if (d.maxMult) {
+            const mx = parseFloat(d.maxMult).toFixed(2)+'x';
+            document.getElementById('LS-MAX').textContent = mx;
+            document.getElementById('RS-MX').textContent  = mx;
+        }
+        if (sig?.mediaHistorico) document.getElementById('LS-AVG').textContent = sig.mediaHistorico+'x';
+
+    } catch(e) { console.warn('poll error', e); }
+}
+
+// Inicia e repete a cada 1s
+pollSignal();
+setInterval(pollSignal, 1000);
+
 
 function setSig(cardCls, badgeCls, badgeTxt, hl, hlColor, sig, html=false) {
     document.getElementById('SIG').className  = cardCls;
@@ -814,7 +839,7 @@ function setSig(cardCls, badgeCls, badgeTxt, hl, hlColor, sig, html=false) {
     }
 }
 
-function addHist(m, res) {
+function addHist(m, res, silent=false) {
     const feed=document.getElementById('HIST');
     const cls=m<1.5?'low':m<3?'mid':m<10?'high':'epic';
     const resMap={green:['g','✅ GREEN'],red:['r','❌ LOSS'],none:['n','➖']};
