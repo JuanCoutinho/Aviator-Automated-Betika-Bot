@@ -2,146 +2,182 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Materiais de Divulgação — Método Sheik Milionário</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+    <title>Artes - Print Screen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #F5C518;
             --gold-dark: #B8860B;
-            --bg: #050505;
-            --glass: rgba(15,15,15,0.8);
+            --green: #00E676;
+            --bg: #0a0a0a;
+            --glass: rgba(15,15,15,0.6);
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: #fff;
-            padding: 40px 20px;
+            background: #222;
+            margin: 0; padding: 50px;
+            display: flex; flex-direction: column; gap: 100px;
+            align-items: center;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        .header h1 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 48px;
-            font-weight: 900;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            margin-bottom: 10px;
-        }
-        .header p {
-            color: #888;
-            font-size: 18px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-        .banner-row {
-            grid-column: 1 / -1;
-        }
-        .card {
-            background: var(--glass);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 20px;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(245, 197, 24, 0.4);
-        }
-        .card-img {
-            width: 100%;
-            border-radius: 12px;
+        .artboard {
+            position: relative;
+            background: #000;
             overflow: hidden;
-            background: #111;
-            margin-bottom: 20px;
-        }
-        .card-img img {
-            width: 100%;
-            display: block;
-        }
-        .card-info h3 {
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             font-family: 'Outfit', sans-serif;
-            font-size: 24px;
-            margin-bottom: 10px;
+            color: #fff;
         }
-        .card-info p {
-            color: #A0A0A0;
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 20px;
+        
+        /* POST 1 - 1080x1080 */
+        .post { width: 1080px; height: 1080px; }
+        /* BANNER - 1200x628 */
+        .banner { width: 1200px; height: 628px; }
+
+        /* Fundo padrão luxo */
+        .bg-glow {
+            position: absolute; width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(245, 197, 24, 0.15) 0%, transparent 60%);
+            top: -200px; left: -200px; filter: blur(80px);
         }
-        .download-btn {
-            display: inline-block;
+        .bg-glow-green {
+            position: absolute; width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(0,230,118,0.15) 0%, transparent 60%);
+            bottom: -200px; right: -200px; filter: blur(80px);
+        }
+
+        /* ─── POST 1: Chamada Agressiva ─── */
+        .p1-content {
+            position: relative; z-index: 10;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 100%; padding: 60px; text-align: center;
+        }
+        .p1-logo img { width: 180px; border-radius: 35px; box-shadow: 0 0 50px rgba(245,197,24,0.4); margin-bottom: 40px; }
+        .p1-title { font-size: 85px; font-weight: 900; line-height: 1; text-transform: uppercase; margin-bottom: 20px; }
+        .p1-title span { color: var(--gold); }
+        .p1-sub { font-size: 32px; color: #a0a0a0; margin-bottom: 50px; font-weight: 400; }
+        .p1-graph {
+            border: 2px solid rgba(255,255,255,0.1); border-radius: 30px;
+            padding: 40px 80px; background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(20px); margin-bottom: 60px;
+        }
+        .p1-mult { font-size: 140px; font-weight: 900; color: var(--green); text-shadow: 0 0 80px rgba(0,230,118,0.5); line-height: 1; margin-bottom: 10px; font-family: 'Space Mono', monospace; letter-spacing: -5px; }
+        .p1-tag { font-size: 24px; color: #fff; letter-spacing: 5px; text-transform: uppercase; }
+        .p1-cta {
             background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            color: #000;
-            text-decoration: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 900;
-            font-family: 'Outfit', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            padding: 30px 80px; border-radius: 100px;
+            font-size: 38px; font-weight: 900; color: #000;
+            text-transform: uppercase; letter-spacing: 2px;
+            box-shadow: 0 20px 40px rgba(245,197,24,0.4);
         }
-        @media(max-width: 768px) {
-            .grid { grid-template-columns: 1fr; }
+
+        /* ─── POST 2: Avião e Sinais ─── */
+        .p2-content {
+            position: relative; z-index: 10;
+            display: flex; flex-direction: column; align-items: center;
+            height: 100%; padding: 80px;
+        }
+        .p2-header { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 80px; }
+        .p2-logo { display:flex; align-items: center; gap: 20px; font-size: 40px; font-weight: 900; color: var(--gold); }
+        .p2-logo img { width: 80px; border-radius: 16px; box-shadow: 0 0 20px rgba(245,197,24,0.3); }
+        .p2-live { background: rgba(0,230,118,0.1); color: var(--green); border: 2px solid var(--green); padding: 10px 30px; border-radius: 100px; font-size: 26px; font-weight: 900; letter-spacing: 2px; }
+        
+        .p2-plane-container { position: relative; margin-bottom: 50px; }
+        .p2-plane { width: 450px; filter: drop-shadow(0 40px 50px rgba(0,0,0,0.8)); transform: rotate(-10deg); }
+        
+        .p2-text { font-size: 65px; font-weight: 900; text-align: center; text-transform: uppercase; line-height: 1.1; margin-bottom: 30px; }
+        .p2-text span { color: var(--green); text-shadow: 0 0 30px rgba(0,230,118,0.4); }
+        .p2-cta { font-size: 30px; color: #fff; opacity: 0.8; font-weight: 400; border: 2px dashed rgba(255,255,255,0.2); padding: 20px 50px; border-radius: 20px; }
+
+        /* ─── BANNER 1200x628 ─── */
+        .b-content {
+            position: relative; z-index: 10;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 100%; padding: 0 80px;
+        }
+        .b-left { width: 55%; }
+        .b-right { width: 45%; position: relative; display: flex; justify-content: center; }
+        .b-logo { display:flex; align-items: center; gap: 20px; font-size: 34px; font-weight: 900; color: #fff; margin-bottom: 30px; }
+        .b-logo img { width: 80px; border-radius: 16px; box-shadow: 0 0 20px rgba(245,197,24,0.5); }
+        
+        .b-title { font-size: 70px; font-weight: 900; line-height: 1; text-transform: uppercase; margin-bottom: 20px; }
+        .b-title span { color: var(--gold); }
+        .b-desc { font-size: 22px; color: #a0a0a0; margin-bottom: 40px; max-width: 450px; line-height: 1.5; }
+        
+        .b-cta {
+            background: var(--green);
+            padding: 24px 60px; border-radius: 100px;
+            font-size: 24px; font-weight: 900; color: #000;
+            text-transform: uppercase; letter-spacing: 2px;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(0,230,118,0.4);
+        }
+
+        .b-plane { width: 550px; transform: rotate(-5deg); filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8)); }
+        
+        /* Efeito grid diagonal no fundo */
+        .art-grid {
+            position: absolute; inset: 0; opacity: 0.1;
+            background-image: linear-gradient(45deg, #fff 1px, transparent 1px);
+            background-size: 40px 40px; pointer-events: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>Materiais Promocionais</h1>
-            <p>Artes oficiais para divulgação do Método Sheik Brasileiro Milionário</p>
-        </header>
 
-        <div class="grid">
-            <!-- Banner -->
-            <div class="card banner-row">
-                <div class="card-img">
-                    <img src="file:///home/red/.gemini/antigravity/brain/5dd304ed-326d-4296-9765-438051a2a149/sheik_promo_banner_1776955632121.png" alt="Banner Landscape">
-                </div>
-                <div class="card-info">
-                    <h3>Banner de Cabeçalho / Capa</h3>
-                    <p>Ideal para capas de Facebook, cabeçalhos de site e mídia horizontal. Retrata poder e riqueza com a decolagem exponencial.</p>
-                    <a href="file:///home/red/.gemini/antigravity/brain/5dd304ed-326d-4296-9765-438051a2a149/sheik_promo_banner_1776955632121.png" download class="download-btn">Baixar Arte</a>
-                </div>
+    <!-- ARTE 1 -->
+    <div class="artboard post">
+        <div class="bg-glow"></div>
+        <div class="bg-glow-green"></div>
+        <div class="art-grid"></div>
+        <div class="p1-content">
+            <div class="p1-logo"><img src="./logo-sheik.png" alt="Sheik Logo"></div>
+            <div class="p1-title">Método Sheik<br><span>Brasileiro</span></div>
+            <div class="p1-sub">A MAIOR SALA DE SINAIS VIP</div>
+            
+            <div class="p1-graph">
+                <div class="p1-mult">15.00x</div>
+                <div class="p1-tag">Sinal Confirmado • Ao Vivo</div>
             </div>
+            
+            <div class="p1-cta">Liberar Meu Acesso</div>
+        </div>
+    </div>
 
-            <!-- Post 1 -->
-            <div class="card">
-                <div class="card-img">
-                    <img src="file:///home/red/.gemini/antigravity/brain/5dd304ed-326d-4296-9765-438051a2a149/sheik_promo_post_1_1776955584144.png" alt="Post Instagram 1">
-                </div>
-                <div class="card-info">
-                    <h3>Post: Convite Sala VIP</h3>
-                    <p>Post com forte CTA (Call to Action). Exibe gráficos multiplicadores altos com tema escuro e dourado. Foco em autoridade e luxo.</p>
-                    <a href="file:///home/red/.gemini/antigravity/brain/5dd304ed-326d-4296-9765-438051a2a149/sheik_promo_post_1_1776955584144.png" download class="download-btn">Baixar Arte</a>
-                </div>
+    <!-- ARTE 2 -->
+    <div class="artboard post">
+        <div class="bg-glow" style="background: radial-gradient(circle, rgba(0,230,118, 0.2) 0%, transparent 60%); left:50%; transform:translateX(-50%);"></div>
+        <div class="art-grid"></div>
+        <div class="p2-content">
+            <div class="p2-header">
+                <div class="p2-logo"><img src="./logo-sheik.png" alt="Sheik Logo"> VIP</div>
+                <div class="p2-live">🟢 OPERANDO AGORA</div>
             </div>
+            
+            <div class="p2-plane-container">
+                <img class="p2-plane" src="./aviao3d.png" alt="Avião">
+            </div>
+            
+            <div class="p2-text">Taxa de Acerto de<br><span>98.6%</span> Hoje!</div>
+            <div class="p2-cta">Copie e Cole Nossos Sinais</div>
+        </div>
+    </div>
 
-            <!-- Post 2 -->
-            <div class="card">
-                <div class="card-img">
-                    <img src="file:///home/red/.gemini/antigravity/brain/5dd304ed-326d-4296-9765-438051a2a149/sheik_promo_post_2_1776955608440.png" alt="Post Instagram 2">
-                </div>
-                <div class="card-info">
-                    <h3>Post: Green na Mão</h3>
-                    <p>Arte promocional super chamativa para stories e feed. Focada no alerta do celular capturando multiplicadores insanos para a tropa do sheik.</p>
-                    <a href="file:///home/red/.gemini/antigravity/brain/5dd304ed-326d-4296-9765-438051a2a149/sheik_promo_post_2_1776955608440.png" download class="download-btn">Baixar Arte</a>
-                </div>
+    <!-- ARTE 3 (BANNER) -->
+    <div class="artboard banner">
+        <div class="bg-glow"></div>
+        <div class="art-grid"></div>
+        <div class="b-content">
+            <div class="b-left">
+                <div class="b-logo"><img src="./logo-sheik.png" alt="Sheik Logo"> Sheik Brasileiro</div>
+                <div class="b-title">Multiplique<br>Seus <span>Ganhos</span></div>
+                <div class="b-desc">O algoritmo definitivo que analisa o mercado 24h e manda o multiplicador exato no seu celular.</div>
+                <div class="b-cta">Acessar Sala Vip</div>
+            </div>
+            <div class="b-right">
+                <div class="bg-glow-green" style="width: 500px; height: 500px; bottom: 0; right: 0;"></div>
+                <img class="b-plane" src="./aviao3d.png" alt="Avião">
             </div>
         </div>
     </div>
+
 </body>
 </html>
